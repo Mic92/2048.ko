@@ -40,4 +40,4 @@ Cudos to mevdschee, who built original C-Version: [2048.c](https://github.com/me
 SCREENSHOTS
 ===========
 
-[2048.ko](http://i.imgur.com/JLLzMi0.png)
+![2048.ko](http://i.imgur.com/JLLzMi0.png)
