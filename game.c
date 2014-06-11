@@ -6,7 +6,6 @@
 #include <linux/kernel.h>
 #include <asm-generic/uaccess.h>
 #include <linux/random.h>
-#include <linux/seq_file.h>
 #include "game.h"
 
 static u32 score = 0;
