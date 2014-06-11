@@ -13,18 +13,18 @@ INSTALL
   - gcc + make
 - simply run:
 
-     $ make
+         $ make
 
 - and:
 
-     $ insmod 2048.ko
+         $ insmod 2048.ko
 
 USAGE
 =====
 
 To play the game just use this nifty snippet:
 
-sudo bash -c 'clear; while true; do cat /proc/play_2048; sleep 0.1; done& while IFS= read -r -n1 c; do echo $c > /proc/play_2048; done'
+    sudo bash -c 'clear; while true; do cat /proc/play_2048; sleep 0.1; done& while IFS= read -r -n1 c; do echo $c > /proc/play_2048; done'
 
 Cancel with Ctrl-C.
 
