@@ -4,6 +4,8 @@
 This linux kernel module adds a new entry /proc/play_2048 in procfs, in order to
 play the famous game [2048](http://git.io/2048)
 
+![2048.ko](http://i.imgur.com/JLLzMi0.png)
+
 INSTALL
 =======
 
@@ -37,7 +39,4 @@ CONTRIBUTION
 Cudos to mevdschee, who built original C-Version: [2048.c](https://github.com/mevdschee/2048.c), which I ported to the kernel.
 
 
-SCREENSHOTS
-===========
 
-![2048.ko](http://i.imgur.com/JLLzMi0.png)
