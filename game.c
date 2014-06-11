@@ -67,13 +67,9 @@ void draw_board(struct seq_file *f, u16 board[BOARD_SIZE][BOARD_SIZE])
 
 void add_random(u16 board[BOARD_SIZE][BOARD_SIZE])
 {
-	static bool initialized = false;
 	s8 x, y;
 	s16 r, len= 0;
-	u16 n, list[BOARD_SIZE*BOARD_SIZE][2];
-
-	if (!initialized)
-		initialized = true;
+	u16 n, list[BOARD_SIZE * BOARD_SIZE][2];
 
 	for (x = 0; x < BOARD_SIZE; x++) {
 		for (y = 0; y < BOARD_SIZE; y++) {
@@ -85,12 +81,12 @@ void add_random(u16 board[BOARD_SIZE][BOARD_SIZE])
 		}
 	}
 
-	if (len>0) {
+	if (len > 0) {
 		r = get_random_int() % len;
 		x = list[r][0];
 		y = list[r][1];
 		n = ((get_random_int() % 10) / 9 + 1) * 2;
-		board[x][y]=n;
+		board[x][y] = n;
 	}
 }
 
@@ -112,7 +108,16 @@ bool game_ended(u16 board[BOARD_SIZE][BOARD_SIZE])
 
 void handle_key(u16 board[BOARD_SIZE][BOARD_SIZE], char key)
 {
-	bool success;
+	bool success = false;
+
+	if (key == 'r' || key == 'q') {
+		reset_game(board);
+		return;
+	}
+	if (game_ended(board)) {
+		return;
+	}
+
 	switch(key) {
 	case 97:	/* 'a' */
 	case 104:	/* 'h' */
@@ -130,19 +135,16 @@ void handle_key(u16 board[BOARD_SIZE][BOARD_SIZE], char key)
 	case 106:	/* 'j' */
 	case 66:	/* down arrow */
 		success = move_down(board);  break;
-	case 27:	/* Esc */
-	case 113:	/* 'r' */
-	case 114:	/* 'q' */
-		score = 0;
-		memset(board, 0, sizeof(u16) * BOARD_SIZE * BOARD_SIZE);
-		add_random(board);
-		add_random(board);
-		/* fallthrough */
-	default:
-		success = false;
 	}
 	if (success)
 		add_random(board);
+}
+
+void reset_game(u16 board[BOARD_SIZE][BOARD_SIZE]) {
+	score = 0;
+	memset(board, 0, sizeof(u16) * BOARD_SIZE * BOARD_SIZE);
+	add_random(board);
+	add_random(board);
 }
 
 static void get_color(u16 value, char *color, int length)
@@ -189,7 +191,7 @@ static s8 find_target(u16 array[BOARD_SIZE], s8 x, s8 stop)
 static bool slide_array(u16 array[BOARD_SIZE])
 {
 	bool success = false;
-	int8_t x, t, stop = 0;
+	u8 x, t, stop = 0;
 
 	for (x = 0; x < BOARD_SIZE; x++) {
 		if (array[x] != 0) {
@@ -214,7 +216,7 @@ static void rotate_board(u16 board[BOARD_SIZE][BOARD_SIZE])
 {
 	s8 i, j, n = BOARD_SIZE;
 	s16 tmp;
-	for (i = 0; i < n / 2; i++){
+	for (i = 0; i < n / 2; i++) {
 		for (j = i; j < n - i - 1; j++){
 			tmp = board[i][j];
 			board[i][j] = board[j][n - i - 1];
@@ -229,9 +231,8 @@ static bool move_up(u16 board[BOARD_SIZE][BOARD_SIZE])
 {
 	bool success = false;
 	s8 x;
-	for (x = 0; x < BOARD_SIZE; x++) {
+	for (x = 0; x < BOARD_SIZE; x++)
 		success |= slide_array(board[x]);
-	}
 	return success;
 }
 
@@ -270,28 +271,22 @@ static bool move_right(u16 board[BOARD_SIZE][BOARD_SIZE])
 
 static bool find_pair_down(u16 board[BOARD_SIZE][BOARD_SIZE])
 {
-	bool success = false;
-	int8_t x, y;
-	for (x = 0; x < BOARD_SIZE; x++) {
-		for (y = 0; y < BOARD_SIZE - 1; y++) {
+	s8 x, y;
+	for (x = 0; x < BOARD_SIZE; x++)
+		for (y = 0; y < BOARD_SIZE - 1; y++)
 			if (board[x][y]==board[x][y + 1])
 				return true;
-		}
-	}
-	return success;
+	return false;
 }
 
 static s16 count_empty(u16 board[BOARD_SIZE][BOARD_SIZE])
 {
 	s8 x, y;
 	s16 count = 0;
-	for (x = 0; x < BOARD_SIZE; x++) {
-		for (y = 0; y < BOARD_SIZE; y++) {
-			if (board[x][y] == 0) {
+	for (x = 0; x < BOARD_SIZE; x++)
+		for (y = 0; y < BOARD_SIZE; y++)
+			if (board[x][y] == 0)
 				count++;
-			}
-		}
-	}
 	return count;
 }
 
