@@ -36,7 +36,7 @@ Restart with 'r'.
 CONTRIBUTION
 ============
 
-Cudos to mevdschee, who built original C-Version: [2048.c](https://github.com/mevdschee/2048.c), which I ported to the kernel.
+Kudos to mevdschee, who built original C-Version: [2048.c](https://github.com/mevdschee/2048.c), which I ported to the kernel.
 
 
 
