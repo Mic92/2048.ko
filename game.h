@@ -1,5 +1,5 @@
 
-#define BOARD_SIZE (16)
+#define BOARD_SIZE (4)
 
 void draw_board(struct seq_file *f, u16 board[BOARD_SIZE][BOARD_SIZE]);
 
