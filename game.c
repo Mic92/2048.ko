@@ -44,7 +44,7 @@ void draw_board(struct seq_file *f, u16 board[BOARD_SIZE][BOARD_SIZE])
 				char s[8];
 				snprintf(s, 8, "%u", board[x][y]);
 				t = 7 - strlen_user(s);
-				seq_printf(f, "%*s%s%*s", t - t / 2, "" , s , t/2 , "");
+				seq_printf(f, "%*s%s%*s", t - t / 2, "" , s , (t + 2)/2 , "");
 			} else {
 				seq_printf(f, "   ·   ");
 			}
