@@ -4,7 +4,6 @@
  * - license: https://github.com/mevdschee/2048.c/blob/master/LICENSE
  */
 #include <linux/kernel.h>
-#include <asm-generic/uaccess.h>
 #include <linux/random.h>
 #include "game.h"
 
@@ -42,9 +41,9 @@ void draw_board(struct seq_file *f, u16 board[BOARD_SIZE][BOARD_SIZE])
 			seq_printf(f, "%s",color);
 			if (board[x][y]!=0) {
 				char s[8];
-				snprintf(s, 8, "%u", board[x][y]);
-				t = 7 - strlen_user(s);
-				seq_printf(f, "%*s%s%*s", t - t / 2, "" , s , (t + 2)/2 , "");
+				snprintf(s, 8, "%u",(uint32_t)1<< board[x][y]);
+				t = 7 - strlen(s);
+				seq_printf(f, "%*s%s%*s", t - t / 2, "" , s , (t )/2 , "");
 			} else {
 				seq_printf(f, "   ·   ");
 			}
