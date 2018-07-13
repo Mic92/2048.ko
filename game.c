@@ -59,7 +59,7 @@ void draw_board(struct seq_file *f, u16 board[BOARD_SIZE][BOARD_SIZE])
 		seq_printf(f, "\n");
 	}
 	seq_printf(f, "\n");
-	seq_printf(f, "        ←,↑,→,↓ or q        \n");
+	seq_printf(f, "       ←,↑,→,↓ or r,q       \n");
 	seq_printf(f, "\033[A");
 }
 
