@@ -19,7 +19,7 @@ INSTALL
 
 - and:
 
-         $ insmod 2048.ko
+         $ sudo insmod 2048.ko
 
 USAGE
 =====
@@ -30,8 +30,8 @@ To play the game just use this nifty snippet:
 
 Cancel with Ctrl-C.
 
-Use arrow keys or wasd or hlkl to move the tiles.
-Restart with 'r'.
+Use arrow keys or wasd or hjkl to move the tiles.
+Restart with 'r' or 'q'.
 
 CONTRIBUTION
 ============
