@@ -19,7 +19,7 @@ INSTALL
 
 - and:
 
-         $ insmod 2048.ko
+         $ sudo insmod 2048.ko
 
 USAGE
 =====
