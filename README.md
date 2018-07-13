@@ -31,7 +31,7 @@ To play the game just use this nifty snippet:
 Cancel with Ctrl-C.
 
 Use arrow keys or wasd or hjkl to move the tiles.
-Restart with 'r'.
+Restart with 'r' or 'q'.
 
 CONTRIBUTION
 ============
