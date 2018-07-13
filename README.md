@@ -30,7 +30,7 @@ To play the game just use this nifty snippet:
 
 Cancel with Ctrl-C.
 
-Use arrow keys or wasd or hlkl to move the tiles.
+Use arrow keys or wasd or hjkl to move the tiles.
 Restart with 'r'.
 
 CONTRIBUTION
