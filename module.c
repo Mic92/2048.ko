@@ -25,13 +25,12 @@ struct eleven_mutex {
 
 DEFINE_MUTEX(eleven_mutex);
 
-static const struct file_operations proc_fops = {
-	.owner = THIS_MODULE,
-	.open = eleven_proc_open,
-	.write = eleven_proc_write,
-	.read = seq_read,
-	.llseek = seq_lseek,
-	.release = single_release,
+static const struct proc_ops proc_fops = {
+	.proc_open = eleven_proc_open,
+	.proc_write = eleven_proc_write,
+	.proc_read = seq_read,
+	.proc_lseek = seq_lseek,
+	.proc_release = single_release,
 };
 
 
@@ -53,9 +52,15 @@ static int eleven_proc_open(struct inode *inode, struct file *file)
 
 ssize_t eleven_proc_write(struct file *file, const char __user *buff, size_t count, loff_t *ppos)
 {
+	char key;
+	if (!count) {
+      return 0;
+    }
+
+	if (copy_from_user(&key, buff, sizeof(key)))
+		return -EFAULT;
 	mutex_lock(&eleven_mutex);
-	if (count >= 1)
-		handle_key(board, buff[0]);
+	handle_key(board, key);
 	mutex_unlock(&eleven_mutex);
 	return count;
 }
